@@ -1,8 +1,5 @@
 package game;
 
-/**
- * Created by fame on 04.11.15.
- */
 public class Board {
     private Chip[][] fild;
     private int width;
