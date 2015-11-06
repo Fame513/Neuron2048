@@ -75,19 +75,19 @@ public class Board {
         }
     }
 
-    private void moveColumeDown(int colume){
+    private void moveColumnDown(int column){
         for(int from = height-1, to = height-1; from >= 0; from--){
-            if (fild[colume][from] != null){
-                moveChip(colume, from, colume, to--);
+            if (fild[column][from] != null){
+                moveChip(column, from, column, to--);
             }
         }
 
     }
 
-    private void moveColumeUp(int colume){
+    private void moveColumnUp(int column){
         for(int from = 0, to = 0; from < height; from++){
-            if (fild[colume][from] != null){
-                moveChip(colume, from, colume, to++);
+            if (fild[column][from] != null){
+                moveChip(column, from, column, to++);
             }
         }
     }
@@ -122,31 +122,31 @@ public class Board {
         return score;
     }
 
-    private int checkColumeUp(int colume){
+    private int checkColumnUp(int column){
         int score = 0;
         for (int i = 0; i < height - 1; i++){
-            if (fild[colume][i+1] == null)
+            if (fild[column][i+1] == null)
                 return score;
-            if (fild[colume][i].getValue() == fild[colume][i+1].getValue()){
-                fild[colume][i].up();
-                removeChip(colume, i+1);
-                score += fild[colume][i].getValue();
-                moveColumeUp(colume);
+            if (fild[column][i].getValue() == fild[column][i+1].getValue()){
+                fild[column][i].up();
+                removeChip(column, i+1);
+                score += fild[column][i].getValue();
+                moveColumnUp(column);
             }
         }
         return score;
     }
 
-    private int checkColumeDown(int colume){
+    private int checkColumnDown(int column){
         int score = 0;
         for (int i = height-1; i > 0; i--){
-            if (fild[colume][i-1] == null)
+            if (fild[column][i-1] == null)
                 return score;
-            if (fild[colume][i].getValue() == fild[colume][i-1].getValue()){
-                fild[colume][i].up();
-                removeChip(colume, i-1);
-                score += fild[colume][i].getValue();
-                moveColumeDown(colume);
+            if (fild[column][i].getValue() == fild[column][i-1].getValue()){
+                fild[column][i].up();
+                removeChip(column, i-1);
+                score += fild[column][i].getValue();
+                moveColumnDown(column);
             }
         }
         return score;
@@ -154,18 +154,18 @@ public class Board {
 
     public int moveUp(){
         int score = 0;
-        for (int colume = 0; colume < width; colume++){
-            moveColumeUp(colume);
-            score += checkColumeUp(colume);
+        for (int column = 0; column < width; column++){
+            moveColumnUp(column);
+            score += checkColumnUp(column);
         }
         return score;
     }
 
     public int moveDown(){
         int score = 0;
-        for (int colume = 0; colume < width; colume++){
-            moveColumeDown(colume);
-            score += checkColumeDown(colume);
+        for (int column = 0; column < width; column++){
+            moveColumnDown(column);
+            score += checkColumnDown(column);
         }
         return score;
     }
@@ -199,7 +199,7 @@ public class Board {
             System.out.println(desck);
             desck.moveDown();
             desck.moveRight();
-//            desck.moveColumeDown(0);
+//            desck.moveColumnDown(0);
             System.out.println(desck);
         } catch (Exception e){
             System.err.println(e);
